@@ -15,12 +15,12 @@ export const mutations = {
     state.validated++
     console.log(state.validated)
   },
-  // invalidateUser(state) {
-    //   state.validated = false
-    //   console.log(state.validated)
-    // },
-  // increment(state) {
-    //   state.counter++
-    //   console.log('counter', state.counter)
-    // },
+  invalidateUser(state) {
+      state.validated--
+      console.log(state.validated)
+    },
+  increment(state) {
+      state.counter++
+      console.log('counter', state.counter)
+    },
 }
