@@ -1,0 +1,3 @@
+<template>
+  <h2>User's Dashboard</h2>
+</template>
