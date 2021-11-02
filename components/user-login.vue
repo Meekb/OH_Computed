@@ -69,8 +69,8 @@ export default {
       console.log('validation state', this.$state.validated)
       const userId = this.username.split('r')[1]
       console.log('userID', userId)
-      return 
       // this.$emit('is-validated', {userId})
+      return 
     },
     async asyncData(payload, $axios) {
       const bookings = await this.$axios.$get('http://localhost:3001/api/v1/bookings')

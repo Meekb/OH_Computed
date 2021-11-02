@@ -19,8 +19,8 @@ export const mutations = {
       state.validated--
       console.log(state.validated)
     },
-  increment(state) {
-      state.counter++
-      console.log('counter', state.counter)
-    },
+  // increment(state) {
+  //     state.counter++
+  //     console.log('counter', state.counter)
+  //   },
 }

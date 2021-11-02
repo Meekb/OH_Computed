@@ -3,7 +3,7 @@
     <h2>User's Dashboard</h2>
     <nuxt-link to="/">
       <button @click="logOutUser">
-        Sign Off
+        Sign Out
       </button>
     </nuxt-link>
   </main>
