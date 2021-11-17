@@ -22,12 +22,13 @@ export default {
     const profile = await 
     this.$axios.$get(`http://localhost:3001/api/v1/customers/${this.$store.state.userID}`)
     this.$store.commit('setUserProfile', profile)
+    this.$store.commit('setUserHistory')
   },
   methods: {
     logout() {
       this.$store.commit('logoutUser')
       this.$router.push({ path:"/" })
-    }
+    },
   }
 }
 </script>
