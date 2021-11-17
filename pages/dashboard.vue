@@ -17,7 +17,10 @@ export default {
   async created(payload, $axios) {
     const bookings = await this.$axios.$get('http://localhost:3001/api/v1/bookings')
     this.$store.commit('setBookings', bookings.bookings)
-    const profile = await this.$axios.$get(`http://localhost:3001/api/v1/customers/${this.$store.state.userID}`)
+    const rooms = await this.$axios.$get('http://localhost:3001/api/v1/rooms')
+    this.$store.commit('setRooms', rooms.rooms)
+    const profile = await 
+    this.$axios.$get(`http://localhost:3001/api/v1/customers/${this.$store.state.userID}`)
     this.$store.commit('setUserProfile', profile)
   },
   methods: {

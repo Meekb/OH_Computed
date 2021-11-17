@@ -2,9 +2,9 @@ export const state = () => ({
   // state
   validated: false,
   userID: null,
-  bookings: null,
   firstName: null,
   lastName: null,
+  bookings: null,
   rooms: null,
 })
 
@@ -26,6 +26,9 @@ export const mutations = {
   },
   setBookings(state, bookings) {
     state.bookings = bookings
+  },
+  setRooms(state, rooms) {
+    state.rooms = rooms
   },
   setUserProfile(state, profile) {
     state.firstName = profile.name.split(' ')[0]
