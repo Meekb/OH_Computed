@@ -41,7 +41,6 @@ export default {
     return {
       username: '',
       password: '',
-      userID: null,
       error: false,
       validated: false,
     }
@@ -73,7 +72,6 @@ export default {
       if (!this.error) {
         this.validated = true 
         const userId = this.username.split('r')[1]
-        this.userID = userId
         this.$store.commit('validateUser')
         this.$store.commit('setUserID', userId)
         this.$router.push({ path: '/dashboard' })
