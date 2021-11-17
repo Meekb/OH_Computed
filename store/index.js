@@ -40,7 +40,7 @@ export const mutations = {
   setUserHistory(state) {
     const userBookings = state.bookings.filter(b => b.userID === Number(state.userID))
     state.userHistory = userBookings
-    const bookingDetails = state.userHistory.forEach(b => {
+    state.userHistory.forEach(b => {
       const rmDetail = state.rooms.find(rm => {
         return rm.number === b.roomNumber
       })
