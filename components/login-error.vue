@@ -1,11 +1,11 @@
 <template>
-  <div class="error-container">
-    <h4 class="error-text">Invalid username/password. Please try again.</h4>
-  </div>
+  <h4 class="error-text">
+    Invalid username/password. Please try again in 3..2..1
+  </h4>
 </template>
 
 <style>
-.error-container {
+.error-text {
   text-align: center;
   color: #a73838;
 }

@@ -31,20 +31,19 @@
         <login-error v-if="this.error"/>
       </div>
     </div>
-    <nuxt-link to="dashboard">
-      <button @click="validateLogin" class="login-btn">Login</button>
-    </nuxt-link>
+    <button v-if="!validated" @click="validateLogin" class="login-btn">Enter Overlook</button>
   </div>
 </template>
 
-<script>
-import { mapMutations } from 'vuex'
+  <script>
 export default {
   data () {
     return {
       username: '',
       password: '',
+      userID: null,
       error: false,
+      validated: false,
     }
   },
   methods: {
@@ -54,6 +53,7 @@ export default {
       this.error = false
     },
     validateLogin () {
+      // error scenarios
       const setup = this.username.split('r')
       const userError1 = this.username.length < 9
       const userError2 = this.username.length > 10
@@ -61,26 +61,24 @@ export default {
       const userError4 = (Number(setup[1]) < 1)
       const userError5 = (Number(setup[1]) > 50)
       const passError1 = (this.password !== 'overlook2021')
+      // check for errors
       if (userError1 || userError2 || userError3 || userError4 || userError5 || passError1) {
         this.error = true
+        this.username = ''
+        this.password = ''
+        // if login error, throw error and reset in 3..2..1..
+        setTimeout(this.errorTimeout, 3000)
         return
+      }
+      if (!this.error) {
+        this.validated = true 
+        const userId = this.username.split('r')[1]
+        this.userID = userId
+        this.$store.commit('validateUser')
+        this.$store.commit('setUserID', userId)
+        this.$router.push({ path: '/dashboard' })
       } 
-      this.$store.commit('validateUser')
-      console.log('validation state', this.$state.validated)
-      const userId = this.username.split('r')[1]
-      console.log('userID', userId)
-      // this.$emit('is-validated', {userId})
-      return 
     },
-    async asyncData(payload, $axios) {
-      const bookings = await this.$axios.$get('http://localhost:3001/api/v1/bookings')
-      this.$state.bookings = bookings.bookings
-      console.log(this.$state.bookings)
-    },
-    upTheCounter(e) {
-      e.preventDefault()
-      this.$store.commit('increment')
-    }
   }
 }
 </script>
@@ -98,7 +96,14 @@ export default {
   margin-left: 150px;
 }
 .login-btn {
-  font-size: 22px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 1rem;
+  margin-top: 35px;
+  width: 160px;
+}
+.validate-btn {
+  font-size: 20px;
   font-weight: bold;
   border-radius: 1rem;
   margin-top: 35px;

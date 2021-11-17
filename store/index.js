@@ -1,26 +1,34 @@
 export const state = () => ({
   // state
+  validated: false,
   userID: null,
-  validated: 0,
-  activeUser: null,
-  users: null,
-  rooms: null,
   bookings: null,
-  counter: 0,
+  firstName: null,
+  lastName: null,
+  rooms: null,
 })
 
 export const mutations = {
   // actions and mutations
   validateUser(state) {
-    state.validated++
-    console.log(state.validated)
+    state.validated = true
   },
-  invalidateUser(state) {
-      state.validated--
-      console.log(state.validated)
-    },
-  // increment(state) {
-  //     state.counter++
-  //     console.log('counter', state.counter)
-  //   },
+  logoutUser(state) {
+    state.validated = false
+    state.userID = null
+    state.firstName = null
+    state.lastName = null
+    state.bookings = null
+    state.rooms = null
+  },
+  setUserID(state, id) {
+    state.userID = id
+  },
+  setBookings(state, bookings) {
+    state.bookings = bookings
+  },
+  setUserProfile(state, profile) {
+    state.firstName = profile.name.split(' ')[0]
+    state.lastName = profile.name.split(' ')[1]
+  },
 }
