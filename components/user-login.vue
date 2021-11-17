@@ -69,6 +69,7 @@ export default {
         setTimeout(this.errorTimeout, 3000)
         return
       }
+      // if no login error, validate and route to user Dashboard page
       if (!this.error) {
         this.validated = true 
         const userId = this.username.split('r')[1]
