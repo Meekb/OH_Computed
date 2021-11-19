@@ -5,6 +5,9 @@
         {{ this.typeCaseRoom(roomType) }} #{{ roomNumber }}
       </h3>
       <p>
+        {{ date }}
+      </p>
+      <p>
         {{ numBeds }} {{ this.typeCaseBed(bedSize) }} {{ this.formatBeds(numBeds) }}
       </p>
       <p>

@@ -40,6 +40,8 @@ export const mutations = {
     const userBookings = state.bookings.filter(b => b.userID === Number(state.userID))
     state.userHistory = userBookings
     state.userHistory.forEach(b => {
+      b.date = b.date.split('/')
+      b.date = `${b.date[1]}-${b.date[2]}-${b.date[0]}`
       const rmDetail = state.rooms.find(rm => {
         return rm.number === b.roomNumber
       })
@@ -49,7 +51,7 @@ export const mutations = {
       b.bidet = rmDetail.bidet
       b.total = rmDetail.costPerNight
     })
-    return state.userHistory
+    return state.userHistory.sort((a,b) => new Date(a.date) - new Date(b.date))
   },
   setUserTotal(state) {
     state.userTotal = state.userHistory.reduce((acc, cur) => {
