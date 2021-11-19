@@ -21,9 +21,14 @@
       </label>
     </div>
     <div class="search-btn-container">
-      <button class="search-btn" :disabled="!checkinInput || !roomType">
+      <button @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !roomType">
         Check Availability
       </button>
+    </div>
+    <div v-show="inputsSelected" class="user-info">
+      <p>
+        {{ fullName }}
+      </p>
     </div>
     <div class="rooms-display-container">
       <RoomsDisplay :selected="inputsSelected"/>
@@ -33,6 +38,16 @@
 
 <script>
 export default {
+  props: {
+    firstName: {
+      type: String,
+      default: '',
+    },
+    lastName: {
+      type: String,
+      default: '',
+    },
+  },
   data() {
     return {
       checkinInput: '',
@@ -41,13 +56,15 @@ export default {
       inputsSelected: false,
     }
   },
+  computed: {
+    fullName() {
+      return `${this.firstName} ${this.lastName}`
+    }
+  },
   methods: {
-    // async formatCheckinDisplay() {
-    //   const newFormat = await this.checkinInput.split('-')
-    //   const dateDisplay = `${newFormat[1]}-${newFormat[2]}-${newFormat[0]}`
-    //   console.log(this.checkinDisplay)
-    //   return this.checkinDisplay = dateDisplay
-    // }
+    checkAvailability() {
+      this.inputsSelected = true;
+    },
   }
 }
 </script>
