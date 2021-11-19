@@ -7,6 +7,7 @@ export const state = () => ({
   bookings: null,
   rooms: null,
   userHistory: null,
+  userTotal: 0,
 })
 
 export const mutations = {
@@ -27,11 +28,9 @@ export const mutations = {
   },
   setBookings(state, bookings) {
     state.bookings = bookings
-    console.log('Bookings', bookings)
   },
   setRooms(state, rooms) {
     state.rooms = rooms
-    console.log('Rooms', state.rooms)
   },
   setUserProfile(state, profile) {
     state.firstName = profile.name.split(' ')[0]
@@ -48,7 +47,15 @@ export const mutations = {
       b.bedSize = rmDetail.bedSize
       b.numBeds = rmDetail.numBeds
       b.bidet = rmDetail.bidet
+      b.total = rmDetail.costPerNight
     })
-    return state.setUserHistory
+    return state.userHistory
+  },
+  setUserTotal(state) {
+    state.userTotal = state.userHistory.reduce((acc, cur) => {
+      return acc += cur.total
+    }, 0)
+    state.userTotal = state.userTotal.toFixed(2)
+    return state.userTotal
   },
 }

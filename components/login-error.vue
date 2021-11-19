@@ -7,6 +7,8 @@
 <style>
 .error-text {
   text-align: center;
-  color: #a73838;
+  font-weight: bold;
+  color: ivory;
+  font-size: 18px;
 }
 </style>

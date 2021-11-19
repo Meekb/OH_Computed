@@ -100,6 +100,8 @@ export default {
   border-radius: 1rem;
   margin-top: 35px;
   width: 160px;
+  background-color: ivory;
+  border-color: #4d041dd1; 
 }
 .validate-btn {
   font-size: 20px;
