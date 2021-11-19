@@ -21,6 +21,7 @@ export default {
     const profile = await 
     this.$axios.$get(`http://localhost:3001/api/v1/customers/${this.$store.state.userID}`)
     this.$store.commit('setUserProfile', profile)
+    // these need to be added to updated hook so total and history cards reflect updated info once a new room is booked by the user
     this.$store.commit('setUserHistory')
     this.$store.commit('setUserTotal')
   },
