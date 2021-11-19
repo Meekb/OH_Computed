@@ -7,7 +7,7 @@
     <button class="details-btn" v-if="historyVisible" @click="hideUserHistory">Hide Details</button>
     <img v-if="!historyVisible" src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image"/>
     <h3 v-if="historyVisible">
-      Total spent at Overlook: ${{ total }}
+      Total spent at Overlook: ${{ Number(total) }}
     </h3>
     <div
       v-for="(card, index) in this.history"
@@ -41,8 +41,8 @@ export default {
       default: [],
     },
     total: {
-      type: Number,
-      default: 0,
+      type: String,
+      default: '',
     },
   },
   data() {

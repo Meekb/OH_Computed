@@ -7,7 +7,7 @@
       Your last stay with us was on {{ lastStay }}
     </p>
     <button class="logout-btn" @click="logout">
-        Sign Out
+      Sign Out
     </button>
   </header>
 </template>

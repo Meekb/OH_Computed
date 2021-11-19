@@ -52,7 +52,7 @@ export const mutations = {
       b.bidet = rmDetail.bidet
       b.total = rmDetail.costPerNight
     })
-    return state.userHistory.sort((a,b) => new Date(a.date) - new Date(b.date))
+    return state.userHistory.sort((a,b) => new Date(b.date) - new Date(a.date))
   },
   setUserTotal(state) {
     state.userTotal = state.userHistory.reduce((acc, cur) => {
@@ -62,6 +62,6 @@ export const mutations = {
     return state.userTotal
   },
   setLastStay(state) {
-    return state.lastStay = state.userHistory[state.userHistory.length - 1].date
+    return state.lastStay = state.userHistory['0'].date
   },
 }
