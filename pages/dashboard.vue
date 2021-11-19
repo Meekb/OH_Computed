@@ -29,11 +29,6 @@ export default {
     this.$store.commit('setUserTotal')
     this.$store.commit('getLastStay')
   },
-  // data() {
-  //   return {
-  //     lastStay: this.getLastStay(),
-  //   }
-  // },
   methods: {},
 }
 </script>

@@ -61,6 +61,7 @@ export const mutations = {
     state.userTotal = state.userTotal.toFixed(2)
     return state.userTotal
   },
+  // move out to dashboard method and pass prop to user-header
   getLastStay(state) {
     return state.lastStay = state.userHistory[state.userHistory.length - 1].date
   },
