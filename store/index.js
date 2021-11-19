@@ -8,6 +8,7 @@ export const state = () => ({
   rooms: null,
   userHistory: null,
   userTotal: 0,
+  lastStay: null,
 })
 
 export const mutations = {
@@ -59,5 +60,8 @@ export const mutations = {
     }, 0)
     state.userTotal = state.userTotal.toFixed(2)
     return state.userTotal
+  },
+  getLastStay(state) {
+    return state.lastStay = state.userHistory[state.userHistory.length - 1].date
   },
 }

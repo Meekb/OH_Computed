@@ -10,11 +10,11 @@
       <p>
         {{ numBeds }} {{ this.typeCaseBed(bedSize) }} {{ this.formatBeds(numBeds) }}
       </p>
-      <p>
-        Cost Per Night: ${{ total }}
-      <p>
       <p v-if="bidet">
         This room includes a bidet!
+      </p>
+      <p>
+        Total: ${{ total }}
       </p>
     </div>
   </div>
@@ -93,6 +93,8 @@ export default {
 <style scoped>
 .history-card {
   border: 2px solid black;
-  margin: 5px 15px 15px 15px
+  margin: 5px 15px 15px 15px;
+  background-color: #bd8b9ad1;
+  color: black;
 }
 </style>

@@ -1,6 +1,9 @@
 <template>
   <div class="main-container">
-    <user-header :name="this.$store.state.firstName"/>
+    <user-header
+      :name="this.$store.state.firstName"
+      :lastStay="this.$store.state.lastStay"
+    />
     <main class="main-dashboard">
       <history-sidebar
         :name="this.$store.state.firstName"
@@ -24,7 +27,13 @@ export default {
     // these need to be added to updated hook so total and history cards reflect updated info once a new room is booked by the user
     this.$store.commit('setUserHistory')
     this.$store.commit('setUserTotal')
+    this.$store.commit('getLastStay')
   },
+  // data() {
+  //   return {
+  //     lastStay: this.getLastStay(),
+  //   }
+  // },
   methods: {},
 }
 </script>
