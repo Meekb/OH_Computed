@@ -8,7 +8,7 @@ export const state = () => ({
   rooms: null,
   userHistory: null,
   userTotal: 0,
-  lastStay: null,
+  // lastStay: null,
 })
 
 export const mutations = {
@@ -61,8 +61,7 @@ export const mutations = {
     state.userTotal = state.userTotal.toFixed(2)
     return state.userTotal
   },
-  // move out to dashboard method and pass prop to user-header
-  getLastStay(state) {
+  setLastStay(state) {
     return state.lastStay = state.userHistory[state.userHistory.length - 1].date
   },
 }

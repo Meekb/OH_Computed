@@ -1,11 +1,11 @@
 <template>
   <aside class="history-sidebar">
-    <h2 class="sidebar-heading">
-      Reivew Your History At Overlook
-    </h2>
+    <p class="sidebar-heading">
+      Your history at The Overlook Hotel
+    </p>
     <button class="details-btn" v-if="!historyVisible" @click="showUserHistory">Show Details</button>
     <button class="details-btn" v-if="historyVisible" @click="hideUserHistory">Hide Details</button>
-    <img v-if="!historyVisible" src="@/static/overlook-skypool.png" alt="Overlook Skypool" class="sidebar-image"/>
+    <img v-if="!historyVisible" src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image"/>
     <h3 v-if="historyVisible">
       Total spent at Overlook: ${{ total }}
     </h3>
@@ -14,7 +14,7 @@
       :key="index"
       class="history-card-container"
     >
-      <history-card
+      <HistoryCard
         v-if="historyVisible"
         :id="index"
         :date="card.date"
@@ -32,7 +32,7 @@
 <script>
 export default {
   props: {
-    name: {
+    firstName: {
       type: String,
       default: '',
     },
@@ -41,7 +41,7 @@ export default {
       default: [],
     },
     total: {
-      type: String,
+      type: Number,
       default: 0,
     },
   },
@@ -64,7 +64,7 @@ export default {
 
 <style scoped>
 .history-sidebar {
-  background-color: #b88660;
+  background-color: #a76d40;
   height: 76.3vh;
   width: 35vw;
   text-align: center;
@@ -72,8 +72,8 @@ export default {
   color: black;
 }
 .details-btn {
-  background-color: #bd8b9ad1;
-  border-color: #4d041dd1;
+  background-color: #FFFACD;
+  border-color: #FFFACD;
   width: 150px;
   color: black;
   font-weight: bold;
@@ -81,11 +81,13 @@ export default {
   font-size: 18px;
   margin-left: 10px;
 }
-.sidebar-image{
-  border: 2px solid #4d041dd1;
-  border-radius: 1rem;
-  margin-top: 20px;
-  width: 30vw;
-  height: 60vh;
+.sidebar-heading {
+  font-size: 23px;
+  font-weight: 600;
+}
+.sidebar-image {
+  margin-top: 75px;
+  max-width: 100%;
+  min-height: 60%;
 }
 </style>

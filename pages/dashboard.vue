@@ -1,15 +1,16 @@
 <template>
   <div class="main-container">
-    <user-header
-      :name="this.$store.state.firstName"
+    <UserHeader
+      :firstName="this.$store.state.firstName"
       :lastStay="this.$store.state.lastStay"
     />
     <main class="main-dashboard">
-      <history-sidebar
-        :name="this.$store.state.firstName"
+      <HistorySidebar
+        :firstName="this.$store.state.firstName"
         :total="this.$store.state.userTotal"
         :history="this.$store.state.userHistory"
       />
+      <BookingForm />
     </main>
   </div>
 </template>
@@ -24,10 +25,9 @@ export default {
     const profile = await 
     this.$axios.$get(`http://localhost:3001/api/v1/customers/${this.$store.state.userID}`)
     this.$store.commit('setUserProfile', profile)
-    // these need to be added to updated hook so total and history cards reflect updated info once a new room is booked by the user
     this.$store.commit('setUserHistory')
     this.$store.commit('setUserTotal')
-    this.$store.commit('getLastStay')
+    this.$store.commit('setLastStay')
   },
   methods: {},
 }

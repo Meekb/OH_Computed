@@ -27,9 +27,6 @@
         v-model="password" 
         type="password" 
         required/>
-      <div class="login-error-message">
-        <login-error v-if="this.error"/>
-      </div>
     </div>
     <button v-if="!validated" @click="validateLogin" class="login-btn">Enter Overlook</button>
   </div>
@@ -62,11 +59,12 @@ export default {
       const passError1 = (this.password !== 'overlook2021')
       // check for errors
       if (userError1 || userError2 || userError3 || userError4 || userError5 || passError1) {
+        // if login error, throw error, emit error to index and reset
         this.error = true
         this.username = ''
         this.password = ''
-        // if login error, throw error and reset in 3..2..1..
-        setTimeout(this.errorTimeout, 3000)
+        this.$emit('error', this.error) 
+        setTimeout(this.errorTimeout, 2000)
         return
       }
       // if no login error, validate and route to user Dashboard page
@@ -100,8 +98,8 @@ export default {
   border-radius: 1rem;
   margin-top: 35px;
   width: 160px;
-  background-color: ivory;
-  border-color: #4d041dd1; 
+  background-color: #FFFACD;
+  border-color: #660000; 
 }
 .validate-btn {
   font-size: 20px;
@@ -115,9 +113,11 @@ export default {
 }
 .login-label {
   font-size: 18px;
+  font-weight: 600;
 }
 .login-please-text {
   font-size: 18px;
+  font-weight: 600;
 }
 .password {
   margin-left: 11px;

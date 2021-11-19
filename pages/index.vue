@@ -1,13 +1,18 @@
 <template>
   <div class="app-container">
   <header class="login-header">
-    <h1 class="logo">Overlook Hotel</h1>
-    <h2 class="logo">Exclusive. Luxurious. Life-changing....</h2>
+    <h1 class="logo">The Overlook Hotel</h1>
+    <h2 class="logo">Exclusive. Luxurious. Life-changing. . .</h2>
   </header>
   <main class="login-container">
-    <img class="login-image" src="../static/OverlookHallway.png" width="300px"/>
-    <div class="login-input-container">
-      <user-login />
+    <div class="img-and-input">
+      <img class="login-image" src="../static/OverlookHallway.png" width="300px"/>
+      <div class="login-input-container">
+        <UserLogin @error="throwLoginError" />
+      </div>
+    </div>
+    <div class="login-error-message">
+      <LoginError v-if="this.error"/>
     </div>
   </main>
   </div>
@@ -29,6 +34,20 @@ export default {
       ],
     }
   },
+  data() {
+    return {
+      error: false,
+    }
+  },
+  methods: {
+    clearErrorMsg() {
+      this.error = false
+    },
+    throwLoginError() {
+      this.error = true
+      setTimeout(this.clearErrorMsg, 3000)
+    }
+  }
 }
 </script>
 
@@ -47,22 +66,22 @@ body {
   width: 100%;
 }
 .login-header {
-  background-color: #4d041dd1;
-  color: ivory;
+  background-color: #660000;
+  color: #FFFACD;
 }
 .app-container {
   display: flex;
   flex-direction: column;
-  background-color:#b87746;
+  background-color:#a76d40;
   height: 100vh;
 }
-.login-container {
+.img-and-input {
   display: flex;
   margin-top: 25px;
 }
 .login-image {
   margin-left: 8%;
-  border-radius: 1.5rem;
+  border-radius: 2.9rem;
 }
 .logo {
   text-align: center;

@@ -1,7 +1,7 @@
 <template>
   <header class="user-header">
     <h1 class="user-greeting">
-      Hello {{ name }}
+      Hello {{ firstName }}
     </h1>
     <p class="last-stay">
       Your last stay with us was on {{ lastStay }}
@@ -15,7 +15,7 @@
 <script>
 export default {
   props: {
-    name: {
+    firstName: {
       type: String,
       default: '',
     },
@@ -35,18 +35,18 @@ export default {
 
 <style>
 .user-header {
-  background-color: #bd8b9ad1;
-  color: black;
-  border:1px solid #4d041dd1;
+  background-color: #660000;
+  color: #FFFACD;
+  border:1px solid #660000;
   /* border: 2px solid tomato; */
 }
 .last-stay {
-  font-size: 18px;
+  font-size: 22px;
   text-align: center;
 }
 .logout-btn {
-  background-color: #bd8b9ad1;
-  border-color: #4d041dd1;
+  background-color: #FFFACD;
+  border-color: #660000;
   border-radius: 1rem;
   font-size: 18px;
   font-weight: bold;

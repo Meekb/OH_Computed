@@ -93,8 +93,12 @@ export default {
 <style scoped>
 .history-card {
   border: 2px solid black;
+  border-radius: 0.5rem;
   margin: 5px 15px 15px 15px;
-  background-color: #bd8b9ad1;
+  background-color: #FFFACD;
   color: black;
+}
+p {
+  font-weight: 600;
 }
 </style>
