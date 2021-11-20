@@ -8,7 +8,6 @@ export const state = () => ({
   rooms: null,
   userHistory: null,
   userTotal: 0,
-  // lastStay: null,
 })
 
 export const mutations = {
