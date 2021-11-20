@@ -6,7 +6,8 @@
   </header>
   <main class="login-container">
     <div class="img-and-input">
-      <img class="login-image" src="../static/OverlookHallway.png" width="300px"/>
+      <div class="login-image-container">
+      </div>
       <div class="login-input-container">
         <UserLogin @error="throwLoginError" />
       </div>
@@ -77,11 +78,12 @@ body {
 }
 .img-and-input {
   display: flex;
-  margin-top: 25px;
+  margin-top: 34px;
 }
-.login-image {
-  margin-left: 8%;
-  border-radius: 2.9rem;
+.login-image-container {
+  width: 35vw;
+  height: 78vh;
+  content: url("../static/OverlookHallway.png");
 }
 .logo {
   text-align: center;
