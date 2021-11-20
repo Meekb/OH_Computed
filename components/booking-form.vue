@@ -29,9 +29,17 @@
       <p>
         {{ fullName }}
       </p>
+    <div class="booking-info-display">
+      <p>{{ roomType }}</p>
+      <p>Check-in: {{ checkinDisplay }}</p>
+    </div>
     </div>
     <div class="rooms-display-container">
-      <RoomsDisplay :selected="inputsSelected"/>
+      <RoomsDisplay
+        :selected="inputsSelected"
+        :roomType="roomType"
+        :checkinInput="checkinInput"
+      />
     </div>
   </div>
 </template>
@@ -51,7 +59,6 @@ export default {
   data() {
     return {
       checkinInput: '',
-      checkinDisplay: '',
       roomType: '',
       inputsSelected: false,
     }
@@ -59,7 +66,11 @@ export default {
   computed: {
     fullName() {
       return `${this.firstName} ${this.lastName}`
-    }
+    },
+    checkinDisplay() {
+      const display = this.checkinInput.split('-')
+      return `${display[1]}-${display[2]}-${display[0]}`
+    },
   },
   methods: {
     checkAvailability() {

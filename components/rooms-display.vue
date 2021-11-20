@@ -1,7 +1,7 @@
 <template>
   <div class="rooms-container">
     <div v-show="selected" class="room-images">
-      <p>TEST</p>
+      
     </div>
     <div class="room-results">
 
@@ -15,7 +15,15 @@ export default {
     selected: {
       type: Boolean,
       default: false,
-    }
+    },
+    roomType: {
+      type: String,
+      default: '',
+    },
+    checkinInput: {
+      type: String,
+      default: '',
+    },
   }
 }
 </script>
