@@ -25,14 +25,19 @@
         Check Availability
       </button>
     </div>
-    <div v-show="inputsSelected" class="user-info">
+    <div v-show="inputsSelected" class="booking-info-display">
       <p>
-        {{ fullName }}
+        Name: {{ fullName }}
       </p>
-    <div class="booking-info-display">
-      <p>{{ roomType }}</p>
-      <p>Check-in: {{ checkinDisplay }}</p>
-    </div>
+      <p>
+        Room Type: {{ roomType }}
+      </p>
+      <p>
+        Check-in Date: {{ checkinDisplay }}
+      </p>
+      <p>
+        Selected Room Number: 
+      </p>
     </div>
     <div class="rooms-display-container">
       <RoomsDisplay
@@ -120,5 +125,10 @@ select {
   color: #FFFACD;
   background-color: #a76d40;
   border: 2px solid #660000;
+}
+.booking-info-display {
+  font-size: 18px;
+  margin-top: 25px;
+  margin-left: 18%;
 }
 </style>
