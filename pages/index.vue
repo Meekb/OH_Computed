@@ -82,8 +82,10 @@ body {
 }
 .login-image-container {
   width: 35vw;
-  height: 78vh;
-  content: url("../static/OverlookHallway.png");
+  height: 58vh;
+  margin-left: 65px;
+  border-radius: 1rem;
+  content: url("../static/red_hallway.jpeg");
 }
 .logo {
   text-align: center;

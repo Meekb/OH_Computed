@@ -39,12 +39,8 @@
         Selected Room Number: 
       </p>
     </div>
-    <div class="rooms-display-container">
-      <RoomsDisplay
-        :selected="inputsSelected"
-        :roomType="roomType"
-        :checkinInput="checkinInput"
-      />
+    <div class="results-container">
+      <RoomsDisplay :isSearching="isSearching" />
     </div>
   </div>
 </template>
@@ -66,6 +62,7 @@ export default {
       checkinInput: '',
       roomType: '',
       inputsSelected: false,
+      isSearching: false,
     }
   },
   computed: {
@@ -74,12 +71,14 @@ export default {
     },
     checkinDisplay() {
       const display = this.checkinInput.split('-')
+      this.$emit('search', true)
       return `${display[1]}-${display[2]}-${display[0]}`
     },
   },
   methods: {
     checkAvailability() {
-      this.inputsSelected = true;
+      this.inputsSelected = true
+      this.isSearching = true
     },
   }
 }
@@ -122,8 +121,7 @@ select {
   margin-left: 25px;
   border-radius: 1rem;
   font-size: 18px;
-  color: #FFFACD;
-  background-color: #a76d40;
+  color: #660000;
   border: 2px solid #660000;
 }
 .booking-info-display {

@@ -10,7 +10,7 @@
         :total="this.$store.state.userTotal"
         :history="this.$store.state.userHistory"
       />
-      <BookingForm 
+      <BookingForm
         :firstName="this.$store.state.firstName" :lastName="this.$store.state.lastName" 
       />
     </main>

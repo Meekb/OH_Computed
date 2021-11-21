@@ -5,7 +5,12 @@
     </p>
     <button class="details-btn" v-if="!historyVisible" @click="showUserHistory">Show Details</button>
     <button class="details-btn" v-if="historyVisible" @click="hideUserHistory">Hide Details</button>
-    <img v-if="!historyVisible" src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image"/>
+    <div v-if="!historyVisible" class="initial-sidebar">
+      <img src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image"/>
+      <p>
+        Overlook Garden Pool
+      </p>
+    </div>
     <h3 v-if="historyVisible">
       Total spent at Overlook: ${{ this.displayTotal }}
     </h3>
@@ -69,12 +74,12 @@ export default {
 
 <style scoped>
 .history-sidebar {
-  background-color: #a76d40;
-  height: 76.3vh;
+  background-color: #660000;
+  height: 74.9vh;
   width: 35vw;
   text-align: center;
   overflow: scroll;
-  color: black;
+  color: #FFFACD;
 }
 .details-btn {
   background-color: #FFFACD;
@@ -90,9 +95,13 @@ export default {
   font-size: 23px;
   font-weight: 600;
 }
+.initial-sidebar {
+  margin-top: 93px;
+}
 .sidebar-image {
-  margin-top: 75px;
+  /* margin-top: 125px; */
   max-width: 100%;
   min-height: 60%;
+  /* border-radius: 1rem; */
 }
 </style>
