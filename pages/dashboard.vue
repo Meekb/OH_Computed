@@ -19,7 +19,7 @@
 
 <script>
 export default {
-  async created(payload, $axios) {
+  async created() {
     const bookings = await this.$axios.$get('http://localhost:3001/api/v1/bookings')
     this.$store.commit('setBookings', bookings.bookings)
     const rooms = await this.$axios.$get('http://localhost:3001/api/v1/rooms')
@@ -29,6 +29,9 @@ export default {
     this.$store.commit('setUserProfile', profile)
     this.$store.commit('setUserHistory')
     this.$store.commit('setUserTotal')
+  },
+  data() {
+    return {}
   },
   methods: {},
 }

@@ -43,7 +43,7 @@ export default {
     },
     history: {
       type: Array,
-      default: [],
+      default: () => [],
     },
     total: {
       type: String,
@@ -56,9 +56,13 @@ export default {
     }
   },
   computed: {
-    displayTotal() {
-      return Number(this.total)
-    }
+      displayTotal() {
+      // const total = this.history.reduce((acc, cur) => {
+      //   return acc += cur.total
+      // }, 0)
+      // total = total.toFixed(2)
+      // return total
+    },
   },
   methods: {
     showUserHistory() {

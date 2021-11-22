@@ -7,7 +7,7 @@ export const state = () => ({
   bookings: null,
   rooms: null,
   userHistory: null,
-  userTotal: 0,
+  // userTotal: null,
 })
 
 export const mutations = {
@@ -53,11 +53,11 @@ export const mutations = {
     })
     return state.userHistory.sort((a,b) => new Date(b.date) - new Date(a.date))
   },
-  setUserTotal(state) {
-    state.userTotal = state.userHistory.reduce((acc, cur) => {
-      return acc += cur.total
-    }, 0)
-    state.userTotal = state.userTotal.toFixed(2)
-    return state.userTotal
-  },
+  // setUserTotal(state) {
+  //   state.userTotal = state.userHistory.reduce((acc, cur) => {
+  //     return acc += cur.total
+  //   }, 0)
+  //   state.userTotal = state.userTotal.toFixed(2)
+  //   return state.userTotal
+  // },
 }
