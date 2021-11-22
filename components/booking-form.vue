@@ -71,14 +71,14 @@ export default {
     },
     checkinDisplay() {
       const display = this.checkinInput.split('-')
-      this.$emit('search', true)
       return `${display[1]}-${display[2]}-${display[0]}`
     },
   },
   methods: {
     checkAvailability() {
       this.inputsSelected = true
-      this.isSearching = true
+      this.isSearching = true 
+      this.$emit('search', true)
     },
   }
 }

@@ -2,7 +2,7 @@
   <div class="main-container">
     <UserHeader
       :firstName="this.$store.state.firstName"
-      :lastStay="this.$store.state.lastStay"
+      :history="this.$store.state.userHistory"
     />
     <main class="main-dashboard">
       <HistorySidebar
@@ -29,7 +29,6 @@ export default {
     this.$store.commit('setUserProfile', profile)
     this.$store.commit('setUserHistory')
     this.$store.commit('setUserTotal')
-    this.$store.commit('setLastStay')
   },
   methods: {},
 }

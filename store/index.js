@@ -60,7 +60,4 @@ export const mutations = {
     state.userTotal = state.userTotal.toFixed(2)
     return state.userTotal
   },
-  setLastStay(state) {
-    return state.lastStay = state.userHistory['0'].date
-  },
 }

@@ -7,7 +7,7 @@
       Hello {{ firstName }}
     </h1>
     <p class="last-stay">
-      Your last stay was on {{ lastStay }}
+      Your last stay was on {{ showLastStay }}
     </p> 
   </header>
 </template>
@@ -19,10 +19,15 @@ export default {
       type: String,
       default: '',
     },
-    lastStay: {
-      type: String,
-      default: '',
-    }
+    history: {
+      type: Object,
+      default: () => ({}),
+    },
+  },
+  computed: {
+    showLastStay() {
+      return this.history['0'].date
+    },
   },
   methods: {
     logout() {

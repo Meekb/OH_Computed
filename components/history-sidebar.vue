@@ -63,7 +63,6 @@ export default {
   methods: {
     showUserHistory() {
       this.historyVisible = true
-      console.log()
     },
     hideUserHistory() {
       this.historyVisible = false
