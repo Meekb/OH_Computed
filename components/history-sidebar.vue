@@ -96,7 +96,7 @@ export default {
   font-weight: 600;
 }
 .initial-sidebar {
-  margin-top: 93px;
+  margin-top: 100px;
 }
 .sidebar-image {
   /* margin-top: 125px; */

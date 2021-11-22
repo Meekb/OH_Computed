@@ -2,31 +2,37 @@
   <div class="rooms-container">
     <div v-if="!isSearching" class="room-images">
       <div class="res-container">
-        <img
-          src="../static/residential_suite.jpeg"
-          alt="Overlook Residential Suite"
-          class="res-suite"
-        />
-        <p>
-          Residential Suite
-        </p>
+        <NuxtLink to="/residential-suite">
+          <img
+            src="../static/residential_suite.jpeg"
+            alt="Overlook Residential Suite"
+            class="res-suite"
+          />
+        </NuxtLink>
+          <p>
+            Residential Suite
+          </p>
       </div>
       <div class="queen-container">
+        <NuxtLink to="/queen-quarters">
         <img
           src="../static/queen.jpeg"
           alt="Overlook Queen"
           class="queen"
         />
+        </NuxtLink>
         <p>
-          Queen Room
+          Queen Quarters
         </p>
       </div>
       <div class="single-container">
+        <NuxtLink to="/single-room">
         <img
           src="../static/single_room.jpeg"
           alt="Overlook Single"
           class="single"
         />
+        </NuxtLink>
         <p>
           Single Room
         </p>
@@ -61,7 +67,7 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .rooms-container {
   display: flex;
   flex-direction: column;

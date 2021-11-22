@@ -1,14 +1,14 @@
 <template>
   <header class="user-header">
+    <button class="logout-btn" @click="logout">
+      Sign Out
+    </button>
     <h1 class="user-greeting">
       Hello {{ firstName }}
     </h1>
     <p class="last-stay">
-      Your last stay with us was on {{ lastStay }}
-    </p>
-    <button class="logout-btn" @click="logout">
-      Sign Out
-    </button>
+      Your last stay was on {{ lastStay }}
+    </p> 
   </header>
 </template>
 
@@ -50,7 +50,7 @@ export default {
   border-radius: 1rem;
   font-size: 18px;
   font-weight: bold;
-  margin-bottom: 25px;
+  margin-top: 25px;
   margin-left: 10px;
 }
 .user-greeting {
