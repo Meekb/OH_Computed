@@ -1,5 +1,5 @@
 # Overlook with Vuex
-Another rebuild of Overlook Hotel using Vuex Store with Nuxt for state management
+Another rebuild of Overlook Hotel using computed properties and Vuex Store with Nuxt for state management
 
 ## Build Setup
 
