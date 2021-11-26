@@ -4,11 +4,8 @@
       Sign Out
     </button>
     <h1 class="user-greeting">
-      Hello {{ firstName }}
+      Come play with us, {{ firstName }}!
     </h1>
-    <p class="last-stay">
-      Your last stay was on {{ showLastStay }}
-    </p> 
   </header>
 </template>
 
@@ -18,15 +15,6 @@ export default {
     firstName: {
       type: String,
       default: '',
-    },
-    history: {
-      type: Object,
-      default: () => ({}),
-    },
-  },
-  computed: {
-    showLastStay() {
-      return this.history['0'].date
     },
   },
   methods: {
@@ -43,11 +31,6 @@ export default {
   background-color: #660000;
   color: #FFFACD;
   border:1px solid #660000;
-  /* border: 2px solid tomato; */
-}
-.last-stay {
-  font-size: 22px;
-  text-align: center;
 }
 .logout-btn {
   background-color: #FFFACD;
@@ -55,12 +38,13 @@ export default {
   border-radius: 1rem;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 25px;
+  margin-top: 10px;
   margin-left: 10px;
 }
 .user-greeting {
-  margin-top: 0px;
-  padding-top: 25px;
+  margin-top: 25px;
+  margin-bottom: 41px;
+  padding-top: 0px;
   text-align: center;
 }
 </style>

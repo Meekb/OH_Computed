@@ -1,6 +1,8 @@
 <template>
   <div class="app-container">
   <header class="login-header">
+    <NuxtLink to="/careers" class="careers-link">Careers</NuxtLink>
+    <NuxtLink to="/about" class="careers-link">About</NuxtLink>
     <h1 class="logo">The Overlook Hotel</h1>
     <h2 class="logo">Exclusive. Luxurious. Life-changing. . .</h2>
   </header>
@@ -12,6 +14,7 @@
         <UserLogin @error="throwLoginError" />
       </div>
     </div>
+    <p class="careers">Now hiring off-season Caretaker. Checkout our Careers section for application details.</p>
     <div class="login-error-message">
       <LoginError v-if="this.error"/>
     </div>
@@ -70,10 +73,20 @@ body {
   background-color: #660000;
   color: #FFFACD;
 }
+.careers {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+}
+.careers-link {
+  color: #FFFACD;
+  margin-left: 25px;
+  font-size: 18px;
+}
 .app-container {
   display: flex;
   flex-direction: column;
-  background-color:#a76d40;
+  background-color:#FFFACD;
   height: 100vh;
 }
 .img-and-input {

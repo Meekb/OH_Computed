@@ -21,11 +21,13 @@
       </label>
     </div>
     <div class="search-btn-container">
-      <button @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !roomType">
+      <button v-show="!isSearching || (dateError && !isSearching)" @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !roomType">
         Check Availability
       </button>
+      <button v-show="isSearching && !dateError" @click="clearSearch" class="clear-btn">Clear Search</button>
     </div>
-    <div v-show="inputsSelected" class="booking-info-display">
+    <p v-show="dateError">Please select valid check-in date!</p>
+    <div v-show="inputsSelected && !dateError" class="booking-info-display">
       <p>
         Name: {{ fullName }}
       </p>
@@ -40,7 +42,7 @@
       </p>
     </div>
     <div class="results-container">
-      <RoomsDisplay :isSearching="isSearching" />
+      <RoomsDisplay :isSearching="isSearching || dateError" />
     </div>
   </div>
 </template>
@@ -63,6 +65,7 @@ export default {
       roomType: '',
       inputsSelected: false,
       isSearching: false,
+      dateError: false,
     }
   },
   computed: {
@@ -76,10 +79,48 @@ export default {
   },
   methods: {
     checkAvailability() {
+      this.checkForDateError()
       this.inputsSelected = true
       this.isSearching = true 
       this.$emit('search', true)
     },
+    clearSearch() {
+      this.inputsSelected = false
+      this.isSearching = false 
+      this.$emit('search', false)
+      this.checkinInput = ''
+      this.roomType = ''
+    },
+    checkForDateError() {
+      const today = new Date();
+      const mm = String(today.getMonth() + 1).padStart(2, '0')
+      const dd = String(today.getDate()).padStart(2, '0')
+      const yyyy = String(today.getFullYear())
+      const checkDate = mm + '-' + dd + '-' + yyyy
+      const checkMonth = checkDate.split('-')[0]
+      const checkDay = checkDate.split('-')[1]
+      const checkYear = checkDate.split('-')[2]
+      const inputFormat = this.checkinInput.split('-')
+      const errorMonth = inputFormat[1]
+      const errorDay = inputFormat[2]
+      const errorYear = inputFormat[0]
+      if (checkYear < errorYear || (checkMonth < errorMonth && checkYear <= errorYear) || (errorDay < checkDay && checkYear <= errorYear)) {
+        this.dateError = true
+        // this.checkinInput = ''
+        // this.roomType = ''
+        // this.inputsSelected = false
+        // this.isSearching = false
+        setTimeout(this.errorTimeout, 3000)
+        return
+      }
+    },
+    errorTimeout() {
+      this.dateError = false
+      this.checkinInput = ''
+      this.roomType = ''
+      this.inputsSelected = false
+      this.isSearching = false
+    }
   }
 }
 </script>
@@ -117,6 +158,14 @@ select {
   align-items: center;
 }
 .search-btn {
+  margin-top: 25px;
+  margin-left: 25px;
+  border-radius: 1rem;
+  font-size: 18px;
+  color: #660000;
+  border: 2px solid #660000;
+}
+.clear-btn {
   margin-top: 25px;
   margin-left: 25px;
   border-radius: 1rem;

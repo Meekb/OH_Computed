@@ -12,10 +12,13 @@
       </p>
     </div>
     <h3 v-if="historyVisible">
-      Total spent at Overlook: ${{ this.displayTotal }}
+      Total spent at Overlook: ${{ total }}
     </h3>
+    <p v-if="historyVisible" class="last-stay">
+      Your last stay was on {{ lastStay }}
+    </p>
     <div
-      v-for="(card, index) in this.history"
+      v-for="(card, index) in history"
       :key="index"
       class="history-card-container"
     >
@@ -56,12 +59,22 @@ export default {
     }
   },
   computed: {
-      displayTotal() {
-      // const total = this.history.reduce((acc, cur) => {
-      //   return acc += cur.total
-      // }, 0)
-      // total = total.toFixed(2)
-      // return total
+    total () {
+      const total = this.history.reduce((acc, cur) => {
+        return acc += cur.total
+      }, 0)
+      return total.toFixed(2)
+    },
+    lastStay () {
+      const lastStay = this.history.reduce((acc, cur, i) => {
+        if (i === 0) {
+          return cur
+        }
+        else {
+          return acc
+        }
+      }, '')
+        return lastStay.date
     },
   },
   methods: {
@@ -78,7 +91,7 @@ export default {
 <style scoped>
 .history-sidebar {
   background-color: #660000;
-  height: 74.9vh;
+  height: 80.9vh;
   width: 35vw;
   text-align: center;
   overflow: scroll;
@@ -106,5 +119,8 @@ export default {
   max-width: 100%;
   min-height: 60%;
   /* border-radius: 1rem; */
+}
+.last-stay {
+  font-size: 18px;
 }
 </style>

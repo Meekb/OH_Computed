@@ -5,7 +5,7 @@
         Please login to continue.
       </p>
       <p class="login-please-text">
-        Not a member yet? Accepting new members this Fall!
+        Not a member yet? Accepting new members this Winter!
       </p>
   </div>
     <div class="username-container">
@@ -98,8 +98,8 @@ export default {
   border-radius: 1rem;
   margin-top: 35px;
   width: 160px;
-  background-color: #FFFACD;
-  border-color: #660000; 
+  background-color: #660000;
+  color: #FFFACD; 
 }
 .validate-btn {
   font-size: 20px;

@@ -9,6 +9,6 @@
   text-align: center;
   font-size: 25px;
   font-weight: bold;
-  color: #FFFACD;
+  color: #660000;
 }
 </style>>
