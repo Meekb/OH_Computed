@@ -11,7 +11,9 @@
         :history="this.$store.state.userHistory"
       />
       <BookingForm
-        :firstName="this.$store.state.firstName" :lastName="this.$store.state.lastName" 
+        :firstName="this.$store.state.firstName" :lastName="this.$store.state.lastName"
+        :allRooms="this.$store.state.rooms"
+        :allBookings="this.$store.state.bookings" 
       />
     </main>
   </div>

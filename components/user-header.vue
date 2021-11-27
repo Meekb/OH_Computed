@@ -4,7 +4,7 @@
       Sign Out
     </button>
     <h1 class="user-greeting">
-      Come play with us, {{ firstName }}!
+      Come play with us {{ firstName }}. . .
     </h1>
   </header>
 </template>
@@ -30,7 +30,7 @@ export default {
 .user-header {
   background-color: #660000;
   color: #FFFACD;
-  border:1px solid #660000;
+  border-bottom:1px solid #FFFACD;
 }
 .logout-btn {
   background-color: #FFFACD;
@@ -38,7 +38,7 @@ export default {
   border-radius: 1rem;
   font-size: 18px;
   font-weight: bold;
-  margin-top: 10px;
+  margin-top: 12px;
   margin-left: 10px;
 }
 .user-greeting {

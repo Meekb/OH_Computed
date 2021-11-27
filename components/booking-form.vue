@@ -8,7 +8,7 @@
       <label class="select-text">
         Select Room Type:
         <select 
-          v-model="roomType" 
+          v-model="selectedType" 
           class="dropdown" 
           required
         >
@@ -21,7 +21,7 @@
       </label>
     </div>
     <div class="search-btn-container">
-      <button v-show="!isSearching || (dateError && !isSearching)" @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !roomType">
+      <button v-show="!isSearching || (dateError && !isSearching)" @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !selectedType">
         Check Availability
       </button>
       <button v-show="isSearching && !dateError" @click="clearSearch" class="clear-btn">Clear Search</button>
@@ -32,7 +32,7 @@
         Name: {{ fullName }}
       </p>
       <p>
-        Room Type: {{ roomType }}
+        Room Type: {{ selectedType }}
       </p>
       <p>
         Check-in Date: {{ checkinDisplay }}
@@ -58,14 +58,24 @@ export default {
       type: String,
       default: '',
     },
+    allRooms: {
+      type: Array,
+      default: [],
+    },
+    allBookings: {
+      type: Array,
+      defailt: [],
+    },
   },
   data() {
     return {
       checkinInput: '',
-      roomType: '',
+      selectedType: '',
       inputsSelected: false,
       isSearching: false,
       dateError: false,
+      availRooms: [],
+      queryMatch: [],
     }
   },
   computed: {
@@ -82,14 +92,29 @@ export default {
       this.checkForDateError()
       this.inputsSelected = true
       this.isSearching = true 
-      this.$emit('search', true)
+      this.availRooms = []
+      const checkinDate = this.checkinInput.split('-')[1] + '-' + this.checkinInput.split('-')[2] + '-' + this.checkinInput.split('-')[0]
+      const bookedRooms = this.allBookings.filter(bk => bk.date === checkinDate)
+      this.allRooms.map(rm => {
+        const checker = bookedRooms.find(br => br.roomNumber === rm.number)
+        if (!checker) {
+          this.availRooms.push(rm)
+        }
+      })
+      this.availRooms.map(rm => {
+        if (rm.split('').length > 1) {
+          rm.roomType.split(' ').map(w => w[0].toUpperCase() + w.substring(1, w.length)).join(' ')
+        } else {
+          rm.roomType.split('').map(w => w[0].toUpperCase() + w.substring(1, w.length)).join('')
+        }
+       })
     },
     clearSearch() {
       this.inputsSelected = false
       this.isSearching = false 
       this.$emit('search', false)
       this.checkinInput = ''
-      this.roomType = ''
+      this.selectedType = ''
     },
     checkForDateError() {
       const today = new Date();
@@ -107,7 +132,7 @@ export default {
       if (checkYear < errorYear || (checkMonth < errorMonth && checkYear <= errorYear) || (errorDay < checkDay && checkYear <= errorYear)) {
         this.dateError = true
         // this.checkinInput = ''
-        // this.roomType = ''
+        // this.selectedType = ''
         // this.inputsSelected = false
         // this.isSearching = false
         setTimeout(this.errorTimeout, 3000)
@@ -117,7 +142,7 @@ export default {
     errorTimeout() {
       this.dateError = false
       this.checkinInput = ''
-      this.roomType = ''
+      this.selectedType = ''
       this.inputsSelected = false
       this.isSearching = false
     }
