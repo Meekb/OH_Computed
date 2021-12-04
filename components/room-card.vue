@@ -3,6 +3,8 @@
     <h3 class="room-card-heading">{{ type }} #{{ roomNumber }}</h3>
     <p>{{ beds }} {{ numBeds }}</p>
     <p>${{ costPerNight }}</p>
+    <input type=radio />
+    <label>Book this room</label>
   </div>
 </template>
 
