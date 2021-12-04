@@ -12,11 +12,11 @@
           class="dropdown" 
           required
         >
-          <option name="default none"></option>
-          <option name="Residential Suite">Residential Suite</option>
-          <option name="Suite">Suite</option>
-          <option name="Junior Suite">Junior Suite</option>
-          <option name="SingleRoom">Single Room</option>
+          <option name="default none" value="default none"></option>
+          <option name="Residential Suite" value="residential suite">Residential Suite</option>
+          <option name="Suite" value="suite">Suite</option>
+          <option name="Junior Suite" value="junior suite">Junior Suite</option>
+          <option name="Single" value="single">Single Room</option>
         </select>
       </label>
     </div>
@@ -41,8 +41,8 @@
         Selected Room Number: 
       </p>
     </div>
-    <div class="results-container">
-      <RoomsDisplay :isSearching="isSearching || dateError" />
+    <div class="results-container" v-show="!dateError">
+      <RoomsDisplay :isSearching="isSearching" :queryMatch="queryMatch"/>
     </div>
   </div>
 </template>
@@ -89,10 +89,12 @@ export default {
   },
   methods: {
     checkAvailability() {
+      // checks that input date is valid
       this.checkForDateError()
       this.inputsSelected = true
       this.isSearching = true 
-      this.availRooms = []
+      // find all available rooms and store them in this.availRooms array
+      this.availRooms = [] 
       const checkinDate = this.checkinInput.split('-')[1] + '-' + this.checkinInput.split('-')[2] + '-' + this.checkinInput.split('-')[0]
       const bookedRooms = this.allBookings.filter(bk => bk.date === checkinDate)
       this.allRooms.map(rm => {
@@ -101,13 +103,8 @@ export default {
           this.availRooms.push(rm)
         }
       })
-      this.availRooms.map(rm => {
-        if (rm.split('').length > 1) {
-          rm.roomType.split(' ').map(w => w[0].toUpperCase() + w.substring(1, w.length)).join(' ')
-        } else {
-          rm.roomType.split('').map(w => w[0].toUpperCase() + w.substring(1, w.length)).join('')
-        }
-       })
+      const matches = this.availRooms.filter(rm => rm.roomType === this.selectedType)
+      this.queryMatch = matches
     },
     clearSearch() {
       this.inputsSelected = false
@@ -121,23 +118,23 @@ export default {
       const mm = String(today.getMonth() + 1).padStart(2, '0')
       const dd = String(today.getDate()).padStart(2, '0')
       const yyyy = String(today.getFullYear())
+      // todays date mm-dd-yyyy
       const checkDate = mm + '-' + dd + '-' + yyyy
-      const checkMonth = checkDate.split('-')[0]
-      const checkDay = checkDate.split('-')[1]
-      const checkYear = checkDate.split('-')[2]
+      const month = checkDate.split('-')[0]
+      const day = checkDate.split('-')[1]
+      const year = checkDate.split('-')[2]
+      // cust input mm-dd-yyyy
       const inputFormat = this.checkinInput.split('-')
-      const errorMonth = inputFormat[1]
-      const errorDay = inputFormat[2]
-      const errorYear = inputFormat[0]
-      if (checkYear < errorYear || (checkMonth < errorMonth && checkYear <= errorYear) || (errorDay < checkDay && checkYear <= errorYear)) {
+      const inputMonth = inputFormat[1]
+      const inputDay = inputFormat[2]
+      const inputYear = inputFormat[0]
+      // check for date errors
+      if ((inputYear < year) || (inputMonth === month && inputDay < day)) {
         this.dateError = true
-        // this.checkinInput = ''
-        // this.selectedType = ''
-        // this.inputsSelected = false
-        // this.isSearching = false
-        setTimeout(this.errorTimeout, 3000)
-        return
-      }
+        setTimeout(this.errorTimeout, 2000)
+      }  
+      // else do nothing for now
+      return
     },
     errorTimeout() {
       this.dateError = false
@@ -163,6 +160,7 @@ select {
 .booking-container {
   background-color: #FFFACD;
   width: 100%;
+  height: 81vh;
 }
 .calender-selector {
   display: flex;

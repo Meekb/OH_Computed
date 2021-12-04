@@ -6,7 +6,7 @@
     <button class="details-btn" v-if="!historyVisible" @click="showUserHistory">Show Details</button>
     <button class="details-btn" v-if="historyVisible" @click="hideUserHistory">Hide Details</button>
     <div v-if="!historyVisible" class="initial-sidebar">
-      <img src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image"/>
+      <img src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image" v-lazy-load/>
       <p>
         Overlook Garden Pool
       </p>
@@ -91,8 +91,8 @@ export default {
 <style scoped>
 .history-sidebar {
   background-color: #660000;
-  height: 80.9vh;
   width: 35vw;
+  height: 81vh;
   text-align: center;
   overflow: scroll;
   color: #FFFACD;

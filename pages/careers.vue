@@ -1,5 +1,7 @@
 <template>
-  <h2>This is our Careers Page</h2>
+  <div>
+    <h2>This is our Careers Page</h2>
+  </div>
 </template>
 
 <script>

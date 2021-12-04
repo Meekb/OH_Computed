@@ -1,5 +1,22 @@
 <template>
   <div class="rooms-container">
+    <div class="results" v-if="isSearching">
+      <div
+        v-for="(card, index) in queryMatch"
+        :key="index"
+        class="results-container"
+      >
+        <RoomCard
+          :id="index"
+          :roomNumber="card.number"
+          :bedSize="card.bedSize"
+          :cost="card.costPerNight"
+          :beds="card.numBeds"
+          :type="card.roomType"
+          :bidet="card.bidet"
+        />
+      </div>
+   </div> 
     <div v-if="!isSearching" class="room-images">
       <div class="res-container">
         <NuxtLink to="/residential-suite">
@@ -14,7 +31,7 @@
           </p>
       </div>
       <div class="queen-container">
-        <NuxtLink to="/queen-quarters">
+        <NuxtLink to="/queen-quarters" >
         <img
           src="../static/queen.jpeg"
           alt="Overlook Queen"
@@ -38,9 +55,6 @@
         </p>
       </div>
     </div>
-    <div class="room-results">
-
-    </div>
   </div>
 </template>
 
@@ -62,8 +76,12 @@ export default {
     isSearching: {
       type: Boolean,
       default: false,
-    }
-  }
+    },
+    queryMatch: {
+      type: Array,
+      default: [],
+    },
+  },
 }
 </script>
 
@@ -71,10 +89,14 @@ export default {
 .rooms-container {
   display: flex;
   flex-direction: column;
-  margin-top: 95px;
+  margin-top: 25px;
+  height: 40vh;
+  overflow: scroll;
+  /* background-color:#660000; */
 }
 .room-images {
   display: flex;
+  /* margin-top: 25px; */
 }
 .room-results {
   display: flex;
