@@ -30,12 +30,7 @@ export default {
     this.$axios.$get(`http://localhost:3001/api/v1/customers/${this.$store.state.userID}`)
     this.$store.commit('setUserProfile', profile)
     this.$store.commit('setUserHistory')
-    // this.$store.commit('setUserTotal')
   },
-  data() {
-    return {}
-  },
-  methods: {},
 }
 </script>
 
