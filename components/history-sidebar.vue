@@ -12,7 +12,7 @@
       </p>
     </div>
     <h3 v-if="historyVisible">
-      Total spent at Overlook: ${{ total }}
+      Total spent at Overlook: ${{ totalCost }}
     </h3>
     <p v-if="historyVisible" class="last-stay">
       Your last stay was on {{ lastStay }}
@@ -59,13 +59,13 @@ export default {
     }
   },
   computed: {
-    total () {
+    totalCost() {
       const total = this.history.reduce((acc, cur) => {
         return acc += cur.total
       }, 0)
       return total.toFixed(2)
     },
-    lastStay () {
+    lastStay() {
       const lastStay = this.history.reduce((acc, cur, i) => {
         if (i === 0) {
           return cur

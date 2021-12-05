@@ -1,12 +1,14 @@
 <template>
   <div class="rooms-container">
     <div class="results" v-if="isSearching">
+      
       <div
         v-for="(card, index) in queryMatch"
         :key="index"
         class="results-container"
       >
         <RoomCard
+          @selection="getSelection"
           :id="index"
           :roomNumber="card.number"
           :bedSize="card.bedSize"
@@ -21,7 +23,7 @@
       <div class="res-container">
         <NuxtLink to="/residential-suite">
           <img
-            src="../static/residential_suite.jpeg"
+            src="../static/residential-suite.jpeg"
             alt="Overlook Residential Suite"
             class="res-suite"
           />
@@ -81,6 +83,16 @@ export default {
       type: Array,
       default: [],
     },
+  },
+  data() {
+    return {
+      roomSelected: false,
+    }
+  },
+  methods: {
+    getSelection(payload) {
+      this.$emit('selected-room', payload)
+    }
   },
 }
 </script>

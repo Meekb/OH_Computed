@@ -37,12 +37,12 @@
       <p>
         Check-in Date: {{ checkinDisplay }}
       </p>
-      <p>
-        Selected Room Number: 
+      <p v-show="selectedRoom">
+        Selected Room Number: {{ selectedRoom }}
       </p>
     </div>
     <div class="results-container" v-show="!dateError">
-      <RoomsDisplay :isSearching="isSearching" :queryMatch="queryMatch"/>
+      <RoomsDisplay :isSearching="isSearching" :queryMatch="queryMatch" @selected-room="setSelectedRoom" />
     </div>
   </div>
 </template>
@@ -76,6 +76,7 @@ export default {
       dateError: false,
       availRooms: [],
       queryMatch: [],
+      selectedRoom: null,
     }
   },
   computed: {
@@ -142,7 +143,10 @@ export default {
       this.selectedType = ''
       this.inputsSelected = false
       this.isSearching = false
-    }
+    },
+    setSelectedRoom(payload) {
+      this.selectedRoom = payload
+    },
   }
 }
 </script>

@@ -1,10 +1,13 @@
 <template>
   <div class="result-card">
-    <h3 class="room-card-heading">{{ type }} #{{ roomNumber }}</h3>
+    <h3 class="room-card-heading">
+      <input type=radio name="roomNumber" @change="setSelection" :disabled="activeSelection"/>
+    <label>
+      Book {{ type }} #{{ roomNumber }}
+    </label>
+    </h3>
     <p>{{ beds }} {{ numBeds }}</p>
     <p>${{ costPerNight }}</p>
-    <input type=radio />
-    <label>Book this room</label>
   </div>
 </template>
 
@@ -24,12 +27,12 @@ export default {
       default: '',
     },
     cost: {
-      type: String,
-      default: '',
+      type: Number,
+      default: null,
     },
     beds: {
-      type: String,
-      default: '',
+      type: Number,
+      default: null,
     },
     type: {
       type: String,
@@ -40,14 +43,25 @@ export default {
       default: false,
     }, 
   },
+  data() {
+    return {
+      activeSelection: false,
+    }
+  },
   computed: {
     costPerNight() {
       return `${this.cost.toFixed(2)} per night. Total includes tax.`
     },
     numBeds() {
-      return this.beds > 1 ? this.bedSize + "\'s" : this.bedSize
+      return this.beds > 1 ? this.bedSize + " bed\'s" : this.bedSize + " bed"
     },
-  }
+  },
+  methods: {
+    setSelection() {
+      this.activeSelection = true
+      this.$emit('selection', this.roomNumber)
+    }
+  },
 }
 </script>
 

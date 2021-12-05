@@ -72,7 +72,7 @@ export default {
 .king-detail-image-container {
   border: 3px solid #660000;
   border-radius: 1rem;
-  content: url("../static/residential_suite.jpeg");
+  content: url("../static/residential-suite.jpeg");
 }
 .king-room-detail-text {
   width: 24vw;
