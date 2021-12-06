@@ -76,12 +76,12 @@ p {
 }
 
 button {
-  background-color: #ac003e;
+  background-color: #660000;
+  color: #FFFACD;
   width: 150px;
-  height: 40px;
-  color: white;
-  font-size: 14px;
-  border-radius: 16px;
+  font-size: 18px;
+  font-weight: bold;
+  border-radius: 1rem;
   margin-top: 50px;
 }
 </style>

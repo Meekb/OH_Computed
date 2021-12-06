@@ -116,12 +116,17 @@ export default {
 
 <style>
 .rooms-container {
-  display: flex;
-  flex-direction: column;
+  /* display: flex; */
+  /* flex-direction: column; */
   margin-top: 25px;
-  height: 40vh;
+  height: 45vh;
   overflow: scroll;
   /* background-color:#660000; */
+}
+.results {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  /* overflow: scroll; */
 }
 .room-images {
   display: flex;

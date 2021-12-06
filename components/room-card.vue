@@ -3,13 +3,13 @@
     <div>
       <h3 class="room-card-heading">
         <!-- <button type=submit @click="setSelection" class="book-btn">See</button> -->
-        <button @click="show">Show Details</button>
-      <label>
+      <p>
         {{ type }} #{{ roomNumber }}
-      </label>
+      </p>
+        <button class="details-btn" @click="show">See Details</button>
       </h3>
-      <p>{{ beds }} {{ numBeds }}</p>
-      <p>${{ costPerNight }}</p>
+      <!-- <p>{{ beds }} {{ numBeds }}</p>
+      <p>${{ costPerNight }}</p> -->
     </div>
     <div>
       <img v-show="this.roomImgType === 'residential suite'" src="../static/residential-suite.jpeg" style="width: 15vw; border-radius: 1rem;" />
@@ -67,16 +67,6 @@ export default {
     numBeds() {
       return this.beds > 1 ? this.bedSize + " bed\'s" : this.bedSize + " bed"
     },
-    // source() {
-    //   const type = this.type
-    //   if (type === 'residential suite') {
-    //     return "../static/residential-suite.jpeg"
-    //   } else if (type === 'junior suite') {
-    //     return "../static/queen.jpeg"
-    //   } else {
-    //     return "../static/single_room.jpeg"
-    //   }
-    // }
   },
   methods: {
     setSelection() {
@@ -96,13 +86,16 @@ export default {
 <style scoped>
 .result-card {
   /* background-color: #FFFACD; */
+  width: 25vw;
   border: 2px solid black;
   margin: 10px 10px 10px 10px;
   padding: 25px;
   display: flex;
   justify-content: space-evenly;
 }
-.book-btn{
+.details-btn{
+  background-color: #660000;
+  color: #FFFACD;
   font-size: 16px;
   font-weight: bold;
   border-radius: 1rem;
