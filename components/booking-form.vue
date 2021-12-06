@@ -40,9 +40,18 @@
       <p v-show="selectedRoom">
         Selected Room Number: {{ selectedRoom }}
       </p>
+      <p v-show="receipt">
+        Your total will be: {{ receiptTotal }}
+      </p>
+      <button v-show="receipt" class="confirm-btn">
+        Confirm
+      </button>
+      <button v-show="receipt" class="cancel-btn" @click="clearSearch">
+        Cancel
+      </button>
     </div>
     <div class="results-container" v-show="!dateError">
-      <RoomsDisplay :isSearching="isSearching" :queryMatch="queryMatch" @selected-room="setSelectedRoom" />
+      <RoomsDisplay v-show="!receipt" :isSearching="isSearching" :queryMatch="queryMatch" @selected-room="setSelectedRoom" />
     </div>
   </div>
 </template>
@@ -71,12 +80,14 @@ export default {
     return {
       checkinInput: '',
       selectedType: '',
+      selectedRoom: null,
       inputsSelected: false,
-      isSearching: false,
       dateError: false,
       availRooms: [],
       queryMatch: [],
-      selectedRoom: null,
+      isSearching: false,
+      receipt: false,
+      receiptTotal: null,
     }
   },
   computed: {
@@ -113,6 +124,8 @@ export default {
       this.$emit('search', false)
       this.checkinInput = ''
       this.selectedType = ''
+      this.selectedRoom = null
+      this.receipt = false
     },
     checkForDateError() {
       const today = new Date();
@@ -145,7 +158,10 @@ export default {
       this.isSearching = false
     },
     setSelectedRoom(payload) {
-      this.selectedRoom = payload
+      this.isSearching = false
+      this.receipt = true
+      this.selectedRoom = payload.room
+      this.receiptTotal = payload.cost
     },
   }
 }
@@ -199,6 +215,14 @@ select {
   font-size: 18px;
   color: #660000;
   border: 2px solid #660000;
+}
+.confirm-btn,
+.cancel-btn {
+  font-size: 18px;
+  border-radius: 1rem;
+}
+.cancel-btn {
+  margin-left: 65px;
 }
 .booking-info-display {
   font-size: 18px;

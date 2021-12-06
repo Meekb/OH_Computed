@@ -18,6 +18,7 @@
           :bidet="card.bidet"
         />
       </div>
+      
    </div> 
     <div v-if="!isSearching" class="room-images">
       <div class="res-container">
@@ -85,9 +86,7 @@ export default {
     },
   },
   data() {
-    return {
-      roomSelected: false,
-    }
+    return {}
   },
   methods: {
     getSelection(payload) {

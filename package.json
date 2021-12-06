@@ -12,7 +12,7 @@
     "@nuxtjs/axios": "^5.13.6",
     "core-js": "^3.15.1",
     "nuxt": "^2.15.7",
-    "nuxt-lazy-load": "^1.2.9",
+    "nuxt--load": "^1.2.9",
     "store": "^2.0.12"
   }
 }

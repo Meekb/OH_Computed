@@ -11,7 +11,7 @@
         {{ numBeds }} {{ typeCaseBed }} {{ formatBeds }}
       </p>
       <p v-if="bidet">
-        This room includes a bidet!
+        This room had a bidet!
       </p>
       <p>
         Total: ${{ cost }}
