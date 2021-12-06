@@ -2,7 +2,8 @@
   <div class="result-card">
     <div>
       <h3 class="room-card-heading">
-        <button type=submit @click="setSelection" class="book-btn">BOOK</button>
+        <!-- <button type=submit @click="setSelection" class="book-btn">See</button> -->
+        <button @click="show">Show Details</button>
       <label>
         {{ type }} #{{ roomNumber }}
       </label>
@@ -49,6 +50,10 @@ export default {
       type: Boolean,
       default: false,
     },
+    showModal: {
+      type: Boolean,
+      default: false,
+    },
   },
   data() {
     return {
@@ -79,6 +84,10 @@ export default {
         room: this.roomNumber,
         cost: this.cost
       })
+    },
+    show() {
+      this.showModal = true
+      this.$emit('show', this.showModal)
     }
   },
 }

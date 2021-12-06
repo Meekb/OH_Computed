@@ -7,6 +7,7 @@
         :key="index"
         class="results-container"
       >
+     
         <RoomCard
           @selection="getSelection"
           :id="index"
@@ -16,6 +17,13 @@
           :beds="card.numBeds"
           :type="card.roomType"
           :bidet="card.bidet"
+          :showModal=false
+          @show="showRoomDetails"
+        />
+        <SavedModal
+          v-show="showModal"
+          :showModal="showModal"
+          @close="closeRoomDetails"
         />
       </div>
       
@@ -62,6 +70,8 @@
 </template>
 
 <script>
+// import MicroModal from 'micromodal';  // es6 module
+var MicroModal = require('micromodal'); // commonjs module
 export default {
   props: {
     selected: {
@@ -86,11 +96,19 @@ export default {
     },
   },
   data() {
-    return {}
+    return {
+      showModal: false,
+    }
   },
   methods: {
     getSelection(payload) {
       this.$emit('selected-room', payload)
+    },
+    showRoomDetails(payload) {
+      this.showModal = payload
+    },
+    closeRoomDetails(payload) {
+      this.showModal = payload
     }
   },
 }
