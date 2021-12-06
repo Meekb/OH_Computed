@@ -2,19 +2,19 @@
   <div class="card-container">
     <div class="history-card">
       <h3>
-        {{ this.typeCaseRoom(roomType) }} #{{ roomNumber }}
+        {{ typeCaseRoom }} #{{ roomNumber }}
       </h3>
       <p>
         {{ date }}
       </p>
       <p>
-        {{ numBeds }} {{ this.typeCaseBed(bedSize) }} {{ this.formatBeds(numBeds) }}
+        {{ numBeds }} {{ typeCaseBed }} {{ formatBeds }}
       </p>
       <p v-if="bidet">
         This room includes a bidet!
       </p>
       <p>
-        Total: ${{ total }}
+        Total: ${{ cost }}
       </p>
     </div>
   </div>
@@ -51,14 +51,14 @@ export default {
       type: Number,
       default: null,
     },
-    total: {
+    cost: {
       type: Number,
       default: null,
     },
   },
-  methods: {
-    typeCaseRoom(roomType) {
-      roomType = roomType + ''
+  computed: {
+    typeCaseRoom() {
+      const roomType = this.roomType + ''
       const formattedRoom = roomType.split('').map((l, i) => {
         if (!i) {
           return l.toUpperCase()
@@ -68,8 +68,8 @@ export default {
       })
       return formattedRoom.join('')
     },
-    typeCaseBed(bedSize) {
-      bedSize = bedSize + ''
+    typeCaseBed() {
+      const bedSize = this.bedSize + ''
       const formattedSize = bedSize.split('').map((l, i) => {
         if (!i) {
           return l.toUpperCase()
@@ -79,8 +79,8 @@ export default {
       })
       return formattedSize.join('')
     },
-    formatBeds(numBeds) {
-      if (numBeds > 1) {
+    formatBeds() {
+      if (this.numBeds > 1) {
         return "beds"
       } else {
         return "bed"

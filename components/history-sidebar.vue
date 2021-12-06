@@ -31,7 +31,7 @@
         :bedSize="card.bedSize" 
         :bidet="card.bidet" 
         :numBeds="card.numBeds" 
-        :total="card.total" 
+        :cost="card.total" 
       />
     </div>
   </aside>

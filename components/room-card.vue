@@ -1,9 +1,9 @@
 <template>
   <div class="result-card">
     <h3 class="room-card-heading">
-      <input type=radio name="roomNumber" @change="setSelection" :disabled="activeSelection"/>
+      <button type=submit @click="setSelection" class="book-btn">BOOK</button>
     <label>
-      Book {{ type }} #{{ roomNumber }}
+      {{ type }} #{{ roomNumber }}
     </label>
     </h3>
     <p>{{ beds }} {{ numBeds }}</p>
@@ -58,6 +58,7 @@ export default {
   },
   methods: {
     setSelection() {
+      // this.$refs.check.disabled = true
       this.activeSelection = true
       this.$emit('selection', this.roomNumber)
     }
@@ -71,5 +72,11 @@ export default {
   border: 2px solid black;
   margin: 10px 10px 10px 10px;
   padding: 25px;
+}
+.book-btn{
+  font-size: 16px;
+  font-weight: bold;
+  border-radius: 1rem;
+  margin-right: 5px;
 }
 </style>
