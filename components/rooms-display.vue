@@ -7,24 +7,17 @@
         :key="index"
         class="results-container"
       >
-     
         <RoomCard
-          @selection="getSelection"
           :id="index"
+          :type="card.roomType"
           :roomNumber="card.number"
-          :bedSize="card.bedSize"
+          :bidet="card.bidet"
           :cost="card.costPerNight"
           :beds="card.numBeds"
-          :type="card.roomType"
-          :bidet="card.bidet"
-          :showModal=false
+          :bedSize="card.bedSize"
           @show="showRoomDetails"
         />
-        <SavedModal
-          v-show="showModal"
-          :showModal="showModal"
-          @close="closeRoomDetails"
-        />
+
       </div>
       
    </div> 
@@ -97,7 +90,7 @@ export default {
   },
   data() {
     return {
-      showModal: false,
+      // showModal: false,
     }
   },
   methods: {
@@ -116,21 +109,16 @@ export default {
 
 <style>
 .rooms-container {
-  /* display: flex; */
-  /* flex-direction: column; */
   margin-top: 25px;
   height: 45vh;
   overflow: scroll;
-  /* background-color:#660000; */
 }
 .results {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  /* overflow: scroll; */
 }
 .room-images {
   display: flex;
-  /* margin-top: 25px; */
 }
 .room-results {
   display: flex;

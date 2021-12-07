@@ -1,12 +1,13 @@
 <template>
   <div class="result-card">
+    <SavedModal v-show="showModal" :details="{roomNumber, typeOfRoom, bedSize, beds, cost, bidet}" @close="closeModal" />
     <div>
       <h3 class="room-card-heading">
         <!-- <button type=submit @click="setSelection" class="book-btn">See</button> -->
       <p>
-        {{ type }} #{{ roomNumber }}
+        {{ typeOfRoom }} #{{ roomNumber }}
       </p>
-        <button class="details-btn" @click="show">See Details</button>
+      <button class="details-btn" @click="show">See Details</button>
       </h3>
       <!-- <p>{{ beds }} {{ numBeds }}</p>
       <p>${{ costPerNight }}</p> -->
@@ -50,14 +51,11 @@ export default {
       type: Boolean,
       default: false,
     },
-    showModal: {
-      type: Boolean,
-      default: false,
-    },
   },
   data() {
     return {
       roomImgType: this.type,
+      showModal: false,
     }
   },
   computed: {
@@ -67,17 +65,24 @@ export default {
     numBeds() {
       return this.beds > 1 ? this.bedSize + " bed\'s" : this.bedSize + " bed"
     },
+    typeOfRoom() {
+      const text = this.type;
+      return text.split(' ').map((s) => s.charAt(0).toUpperCase() + s.substring(1)).join(' ')
+    },
   },
   methods: {
-    setSelection() {
-      this.$emit('selection', {
-        room: this.roomNumber,
-        cost: this.cost
-      })
-    },
+    // setSelection() {
+    //   this.$emit('selection', {
+    //     room: this.roomNumber,
+    //     cost: this.cost
+    //   })
+    // },
     show() {
       this.showModal = true
       this.$emit('show', this.showModal)
+    },
+    closeModal() {
+      this.showModal = false
     }
   },
 }
@@ -89,7 +94,7 @@ export default {
   width: 25vw;
   border: 2px solid black;
   margin: 10px 10px 10px 10px;
-  padding: 25px;
+  padding: 10px;
   display: flex;
   justify-content: space-evenly;
 }

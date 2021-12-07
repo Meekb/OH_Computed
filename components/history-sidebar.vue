@@ -91,7 +91,7 @@ export default {
 <style scoped>
 .history-sidebar {
   background-color: #660000;
-  width: 35vw;
+  width: 25vw;
   height: 81vh;
   text-align: center;
   overflow: scroll;
