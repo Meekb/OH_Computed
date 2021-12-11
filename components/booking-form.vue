@@ -21,7 +21,7 @@
       </label>
     </div>
     <div class="search-btn-container">
-      <button v-show="!isSearching || (dateError && !isSearching)" @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !selectedType">
+      <button v-show="!isSearching || (dateError && !isSearching)" @click="checkAvailability" class="search-btn" :disabled="!checkinInput || !selectedType || receipt">
         Check Availability
       </button>
       <button v-show="isSearching && !dateError" @click="clearSearch" class="clear-btn">Clear Search</button>
@@ -51,7 +51,7 @@
       </button>
     </div>
     <div class="results-container" v-show="!dateError">
-      <RoomsDisplay v-show="!receipt" :isSearching="isSearching" :queryMatch="queryMatch" @selected-room="setSelectedRoom" />
+      <RoomsDisplay v-show="!receipt" :isSearching="isSearching" :queryMatch="queryMatch" @selectionInfo="setSelectedRoom" />
     </div>
   </div>
 </template>

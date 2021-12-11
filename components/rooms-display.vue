@@ -16,6 +16,7 @@
           :beds="card.numBeds"
           :bedSize="card.bedSize"
           @show="showRoomDetails"
+          @selection="getSelection"
         />
 
       </div>
@@ -95,7 +96,8 @@ export default {
   },
   methods: {
     getSelection(payload) {
-      this.$emit('selected-room', payload)
+      console.log('room display rec payload', payload)
+      this.$emit('selectionInfo', payload)
     },
     showRoomDetails(payload) {
       this.showModal = payload

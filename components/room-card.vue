@@ -1,6 +1,6 @@
 <template>
   <div class="result-card">
-    <SavedModal v-show="showModal" :details="{roomNumber, typeOfRoom, bedSize, beds, cost, bidet}" @close="closeModal" />
+    <SavedModal v-show="showModal" :details="{roomNumber, typeOfRoom, bedSize, beds, cost, bidet}" @close="closeModal" @selection="setSelection" />
     <div>
       <h3 class="room-card-heading">
         <!-- <button type=submit @click="setSelection" class="book-btn">See</button> -->
@@ -71,12 +71,10 @@ export default {
     },
   },
   methods: {
-    // setSelection() {
-    //   this.$emit('selection', {
-    //     room: this.roomNumber,
-    //     cost: this.cost
-    //   })
-    // },
+    setSelection(payload) {
+      // console.log('room card rec payload', payload)
+      this.$emit('selection', payload)
+    },
     show() {
       this.showModal = true
       this.$emit('show', this.showModal)

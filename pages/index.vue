@@ -2,7 +2,7 @@
   <div class="app-container">
   <header class="login-header">
     <NuxtLink to="/careers" class="careers-link">Careers</NuxtLink>
-    <NuxtLink to="/about" class="careers-link">About</NuxtLink>
+    <a href="https://github.com/Meekb/OH_Computed" class="careers-link">About</a>
     <h1 class="logo">The Overlook Hotel</h1>
     <h2 class="logo">Exclusive. Luxurious. Life-changing. . .</h2>
   </header>

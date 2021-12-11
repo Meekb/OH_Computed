@@ -5,7 +5,7 @@
       <p>{{ bedSituation }}</p>
       <p>{{ bidetSituation }}</p>
       <p>${{ costOfRoom }} per night, with tax</p>
-      <button>Book</button>
+      <button @click="setSelection">Book</button>
       <button @click="closeModal">Close</button>
     </div>
     <div class="close">
@@ -41,6 +41,12 @@ export default {
       default: false,
     },
   },
+  data() {
+    return {
+      roomNumber: this.$attrs.details.roomNumber,
+      price: this.$attrs.details.cost,
+    }
+  },
   computed: {
     roomTypeDisplay() {
       return this.$attrs.details.typeOfRoom
@@ -59,7 +65,7 @@ export default {
 
         `${this.$attrs.details.beds} ${this.$attrs.details.bedSize.charAt(0).toUpperCase()
         + this.$attrs.details.bedSize.slice(1)} beds`
-        
+
         : `${this.$attrs.details.beds} ${this.$attrs.details.bedSize.charAt(0).toUpperCase()
         + this.$attrs.details.bedSize.slice(1)} bed`
     },
@@ -69,9 +75,10 @@ export default {
       this.$emit('close')
     },
     setSelection() {
+      this.closeModal()
       this.$emit('selection', {
         room: this.roomNumber,
-        cost: this.cost
+        cost: this.price
       })
     },
   }
