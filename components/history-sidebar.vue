@@ -3,8 +3,8 @@
     <p class="sidebar-heading">
       Your history at The Overlook Hotel
     </p>
-    <button class="details-btn" v-if="!historyVisible" @click="showUserHistory">Show Details</button>
-    <button class="details-btn" v-if="historyVisible" @click="hideUserHistory">Hide Details</button>
+    <button class="details-btn" v-if="!historyVisible" @click="showUserHistory">History</button>
+    <button class="details-btn" v-if="historyVisible" @click="hideUserHistory">Close History</button>
     <div v-if="!historyVisible" class="initial-sidebar">
       <img src="@/static/red_pool.jpeg" alt="Overlook Skypool" class="sidebar-image" v--load/>
       <p>
