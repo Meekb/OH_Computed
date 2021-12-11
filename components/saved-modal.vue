@@ -55,7 +55,13 @@ export default {
       return this.$attrs.details.bidet ? 'Luxury bath with bidet' : 'Luxury bath'
     },
     bedSituation() {
-      return `${this.$attrs.details.beds} ${this.$attrs.details.bedSize}`
+      return this.$attrs.details.beds > 1 ?
+
+        `${this.$attrs.details.beds} ${this.$attrs.details.bedSize.charAt(0).toUpperCase()
+        + this.$attrs.details.bedSize.slice(1)} beds`
+        
+        : `${this.$attrs.details.beds} ${this.$attrs.details.bedSize.charAt(0).toUpperCase()
+        + this.$attrs.details.bedSize.slice(1)} bed`
     },
   },
   methods: {
